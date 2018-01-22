@@ -6,6 +6,9 @@
 \usage{
 collage(rr = "dat")
 }
+\arguments{
+\item{rr}{the pattern you want to recognize in the name of the files you want to work on.}
+}
 \description{
 Collage
 }

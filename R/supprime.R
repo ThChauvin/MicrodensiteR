@@ -3,6 +3,7 @@
 #' @return
 #' @export
 #' @param oo the pattern you want to recognize in the name of the files you want to work on.
+#' @details this function is made to delete ring limite by clicking on it.
 #' @examples
 supprime<-function(oo = "dat")
 {

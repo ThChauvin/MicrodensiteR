@@ -12,3 +12,6 @@ ajout(pp = "dat")
 \description{
 Ajout
 }
+\details{
+this function is made to add ring limite by clicking on the profile where you want to position it.
+}

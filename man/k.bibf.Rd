@@ -12,3 +12,6 @@ k.bibf(tt = "dat")
 \description{
 K.bibf
 }
+\details{
+position the limite between earlywood and latewood. Create a new object adding a "x" at the beginning of the original name.
+}

@@ -3,6 +3,7 @@
 #' @return
 #' @export
 #' @param pp the pattern you want to recognize in the name of the files you want to work on.
+#' @details this function is made to add ring limite by clicking on the profile where you want to position it.
 #' @examples
 ajout<-function(pp = "dat")
 {

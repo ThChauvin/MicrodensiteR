@@ -12,3 +12,6 @@ supprime(oo = "dat")
 \description{
 Supprime
 }
+\details{
+this function is made to delete ring limite by clicking on it.
+}
