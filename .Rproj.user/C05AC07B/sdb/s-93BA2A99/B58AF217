@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' cut_reverse_CW\n#'\n#' @param ii pattern in files you want to cut\n#' @details You have to click where you want to slip the profil\n#' @return two separate profil\n#' @export\n#'\n#' @examples\ncut_reverse_CW<-function(ii = \"dat\")\n{\n  par(mfrow=c(1,1),pty=\"m\")\n  liste<-objects(pattern= ii ,pos=1)\n\n  for (i in 1:length(liste))\n  {\n    k<-NULL\n    print(i)\n    nom<-liste[i]\n    data<-get(nom,pos=1)\n    profil<-data$profil\n    l <- length(profil)\n    plot(profil,col=\"dark grey\")\n    title(main=paste(\"arbre\",nom))\n    lines(profil,col=\"grey\")\n    limites<-data$limites\n    abline(v=limites)\n    points(limites,profil[limites],pc=1,col=\"green\",cex=1.2,lwd=3)\n    year<-data$millesimes\n    pos<-c(limites[1]/2,diff(limites)/2)\n    text(limites-pos,0.95*max(profil),as.character(year),cex=0.7,srt=90,col=\"red\")\n    k<-identify(seq(along=profil),profil,n=1)\n\n    print(k)\n    limP1 <- limites[limites>k]\n    limP2 <- limites[limites<k]\n    P1 <- profil[k:max(limP1)]\n    P2 <- profil[min(limP2):k]\n    P2 <- rev(P2)\n\n    plot(P1,col=\"dark grey\")\n    title(main=paste(\"CORRECTED\",nom,\"P1\"))\n    lines(P1,col=\"grey\")\n    abline(v=limP1-k)\n    limiP1 <- limP1-k\n    points(limiP1,P1[limiP1],pc=1,col=\"green\",cex=1.2,lwd=3)\n    points(0,P1[1],,pc=1,col=\"green\",cex=1.2,lwd=3)\n    pos<-c(limiP1[1]/2,diff(limiP1)/2)\n    yearP1 <- year[c(length(limP1)+1:length(year))]\n    text(limiP1-pos,0.95*max(P1),as.character(yearP1),cex=0.7,srt=90,col=\"red\")\n\n    plot(P2,col=\"dark grey\")\n    title(main=paste(\"CORRECTED\",nom,\"P2\"))\n    lines(P2,col=\"grey\")\n    abline(v=limP2)\n    limiP2 <- limP2\n    points(limiP2,P2[limiP2],pc=1,col=\"green\",cex=1.2,lwd=3)\n    points(0,P2[1],pc=1,col=\"green\",cex=1.2,lwd=3)\n    pos<-c(limiP2[1]/2,diff(limiP2)/2)\n    yearP2 <- year[c(length(limP2)+1:length(year))]\n    text(limiP2-pos,0.95*max(P2),as.character(yearP2),cex=0.7,srt=90,col=\"red\")\n\n    readline()\n    #sauvegarde\n    sortie1 <- list(length = 4)\n    sortie1[[1]] <- P1\n    sortie1[[2]] <- limiP1\n    sortie1[[3]] <- yearP1\n    sortie1[[4]] <- \"1\"\n    names(sortie1) <- c(\"profil\", \"limites\",\"millesimes\",\"sample_number\")\n    assign(paste(nom,\"1\",sep=\"_\"), sortie1, pos = 1, immediate = T)\n\n    sortie2 <- list(length = 4)\n    sortie2[[1]] <- P2\n    sortie2[[2]] <- limiP2\n    sortie2[[3]] <- yearP2\n    sortie2[[4]] <- \"2\"\n    names(sortie2) <- c(\"profil\", \"limites\",\"millesimes\",\"sample_number\")\n    assign(paste(nom,\"2\",sep=\"_\"), sortie2, pos = 1, immediate = T)\n\n  }\n\n}\n",
+    "created" : 1495115063886.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1082362812",
+    "id" : "B58AF217",
+    "lastKnownWriteTime" : 1495537850,
+    "last_content_update" : 1495537850604,
+    "path" : "D:/thchauvin/Doc-INRA/Stats R/Packages/MicrodensiteR/R/cut_reverse_CW.R",
+    "project_path" : "R/cut_reverse_CW.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

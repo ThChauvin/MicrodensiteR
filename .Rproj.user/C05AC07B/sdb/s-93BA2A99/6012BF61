@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Cut_portion\n#'\n#' @param ii pattern in files you want to cut\n#' @details You have to click two times on the profil to select the area to cut\n#' @return a profil without the cut part\n#' @export\n#'\n#' @examples\ncut_portion<-function(ii = \"dat\")\n{\n  par(mfrow=c(1,1),pty=\"m\")\n  liste<-objects(pattern= ii ,pos=1)\n  #\n  vl<-NULL\n  for (i in 1:length(liste))\n  {\n    k<-NULL\n    print(i)\n    nom<-liste[i]\n    data<-get(nom,pos=1)\n    profil<-data$profil\n    l=length(profil)\n    plot(profil,col=\"dark grey\")\n    title(main=paste(\"arbre\",nom))\n    lines(profil,col=\"grey\")\n    limites<-data$limites\n    abline(v=limites)\n    points(limites,profil[limites],pc=1,col=\"green\",cex=1.2,lwd=3)\n    year<-data$millesimes\n    pos<-c(limites[1]/2,diff(limites)/2)\n    text(limites-pos,0.95*max(profil),as.character(year),cex=0.7,srt=90,col=\"red\")\n    k<-identify(seq(along=profil),profil,n=2)\n    if (length(k)>=1)\n    {\n      print(k)\n      procut<-profil[c(1:k[1],k[2]:l)]\n      limites[limites>k[1]]=limites[limites>k[1]]-(k[2]-k[1])\n      plot(procut,col=\"dark grey\")\n      title(main=paste(\"CORRECTED\",nom))\n      lines(procut,col=\"grey\")\n      abline(v=limites)\n      points(limites,procut[limites],pc=1,col=\"green\",cex=1.2,lwd=3)\n      pos<-c(limites[1]/2,diff(limites)/2)\n      text(limites-pos,0.95*max(procut),as.character(year),cex=0.7,srt=90,col=\"red\")\n      readline()\n      #sauvegarde\n      sortie <- list(length = 3)\n      sortie[[1]] <- procut\n      sortie[[2]] <- limites\n      sortie[[3]] <- year\n      names(sortie) <- c(\"profil\", \"limites\",\"millesimes\")\n      assign(paste(nom,sep=\"\"), sortie, pos = 1, immediate = T)\n    }\n  }\n}\n",
+    "created" : 1492162356709.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1611841886",
+    "id" : "6012BF61",
+    "lastKnownWriteTime" : 1492162389,
+    "last_content_update" : 1492162389239,
+    "path" : "D:/thchauvin/Doc-INRA/Stats R/Packages/MicrodensiteR/R/cut_portion.R",
+    "project_path" : "R/cut_portion.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

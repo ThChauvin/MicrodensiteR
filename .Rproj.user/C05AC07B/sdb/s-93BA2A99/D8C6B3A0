@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "#' sep_prof_branch\n#'\n#' @param mama\n#'\n#' @return\n#' @export\n#'\n#' @examples\nsep_prof_branch <- function(mama=\"dat\")\n{\n  liste<-objects(pattern= mama ,pos=1)\n  for (i in 1: length(liste))\n  {\n    nom <- liste[i]\n    print(nom)\n    donnees<-get(nom,pos=1)\n    pgauche <- donnees[c(1,4,6)]\n    pdroit <- donnees[c(2,5,7)]\n\n    profilg <- pgauche$profilg\n    nouvelimg <- c(pgauche$limg,length(profilg))\n    nouveaumilg <- na.omit(pgauche$milg)\n\n    profild <- pdroit$profild\n    nouvelimd <- c(pdroit$limd,length(profild))\n    nouveaumild <- na.omit(pdroit$mild)\n\n    sortieg <- list(length = 4)\n    sortieg[[1]] <- profilg\n    sortieg[[2]] <- nouvelimg[-1]\n    sortieg[[3]] <- nouveaumilg\n    sortieg[[4]] <- \"g\"\n        names(sortieg) <- c(\"profil\", \"limites\",\"millesimes\",\"rayon\")\n    assign(paste(\"rg\",nom,sep=\"\"), sortieg, pos = 1, immediate = T)\n\n    sortied <- list(length = 4)\n    sortied[[1]] <- profild\n    sortied[[2]] <- nouvelimd[-1]\n    sortied[[3]] <- nouveaumild\n    sortied[[4]] <- \"d\"\n    names(sortied) <- c(\"profil\", \"limites\",\"millesimes\",\"rayon\")\n    assign(paste(\"rd\",nom,sep=\"\"), sortied, pos = 1, immediate = T)\n\n  }\n}\n",
+    "created" : 1496225526674.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1758158584",
+    "id" : "D8C6B3A0",
+    "lastKnownWriteTime" : 1496241099,
+    "last_content_update" : 1496241099712,
+    "path" : "D:/thchauvin/Doc-INRA/Stats R/Packages/MicrodensiteR/R/sep_prof_branch.R",
+    "project_path" : "R/sep_prof_branch.R",
+    "properties" : {
+        "docOutlineVisible" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 20,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

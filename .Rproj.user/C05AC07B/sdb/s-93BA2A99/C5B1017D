@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Import.tot\n#'\n#' @return\n#' @export\n#' @param zz the pattern you want to recognize in the name of the files you want to import.\n#' @param pathway path to the files\n#' @details to import profiles in R.\n#' @examples Import.tot(\"pxb\"), will import in a raw all the profile with pxb in their name.\nImport.tot<-function(zz=\"dat\",pathway=\".\")\n{\n  #source(\"Import.R\");Import.R()\n  par(mfrow = c(1, 1), pty = \"m\")\n  liste <- list.files(path=pathway,pattern=zz)     #fichiers a traiter\n  noms <- substring(liste, 0)     #\n  reste <- liste  #}\n  for(i in 1:length(reste))\n  {\n    profil.sauve <- NULL\n    x.sauve <- NULL\n    limil.sauve <- NULL\n    fichier <- reste[i]\n    nom <- fichier\n    print(nom)\n    #attention a ce niveau. Voir le commentaire suivant\n    assign(nom, matrix(as.numeric(scan(paste0(pathway,fichier), skip = 9, multi.line = T)), byrow = T, ncol = 2), pos = 1, immediate = T)\n    print(i)\n    #recuperation de donnees Windendro.\n    donnees <- get(nom, pos = 1)\n    profil <- donnees[, 1]\n    profil<-profil[profil<2]\n    profil<-profil[profil>0]\n    limil <- donnees[, 2]\n    limites <- seq(along = limil)[limil > 1]\n    profil<-profil[1:max(limites)] #eliminer ce qui est au dela de la derniere limite\n    lp <- length(profil)    #longueur du profil\n    x.profil<-seq(along=profil)\n    plot(x.profil,profil,cex=.4)\n    lines(x.profil,profil,col=1)\n    title(main=nom)\n    abline(v = limites,col=2,lwd=2)     #abline(0,1)\n    points(limites, profil[limites], pch = 3, cex = 2,col=3,lwd=2)\n    position<-(c(0,limites)-c(limites,NA))/2\n    position<-position[-length(position)]\n    text(limites+position,max(profil),as.character(limil[limil>1]))\n    #sauvegarde\n    sortie <- list(length = 3)\n    sortie[[1]] <- profil[!is.na(profil)]\n    sortie[[2]] <- seq(along = limil)[limil > 1]\n    sortie[[2]] <- sortie[[2]][!is.na(sortie[[2]])]\n    sortie[[3]] <- limil[limil>1]\n    names(sortie) <- c(\"profil\", \"limites\",\"millesimes\")\n    #readline()\n    assign(paste(nom, sep = \"\"), sortie, pos = 1, immediate = T)\n  }\n}\n",
+    "created" : 1487059126706.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2284788229",
+    "id" : "C5B1017D",
+    "lastKnownWriteTime" : 1516617942,
+    "last_content_update" : 1516617942301,
+    "path" : "D:/thchauvin/Doc-INRA/Stats R/Packages/MicrodensiteR/R/Import.tot.R",
+    "project_path" : "R/Import.tot.R",
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

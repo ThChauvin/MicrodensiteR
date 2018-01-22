@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Calcul.mat_branche\n#'\n#' @return\n#' @export\n#'\n#' @examples\ncalcul.mat_branche<-function(ww = \"dat\", papa)\n{\n  par(mfrow=c(1,1))\n  liste.profils <- objects(pattern = ww ,pos=1)\n  matrix.resultats <- NULL        #matrice des resultats\n  vec <- NULL     #vecteur forme a chaque boucle : donnees par cerne\n  pas <- papa\n  for (i in 1:length(liste.profils))\n  {\n    #DEPART!\n    print(i)\n    nom<-liste.profils[i]\n    print(nom)\n    x <- get(nom, pos = 1) #profil\n    rayon <- x$rayon\n    millesime <- max(as.numeric(x$millesimes))    #millesime VERIFIER\n    lim.cernes <- x$lim.cernes    #limites de cerne\n    lim.bibf1 <- x$lim.bibf     #decoupe selon la limite BI-BF Nancy\n    plot(x$profil,pch=\".\")\n    abline(v=lim.cernes)\n    abline(v=lim.bibf1)\n    text(lim.cernes-(c(lim.cernes,NA)-c(0,lim.cernes))/2,max(x$profil),as.character(x$millesimes),cex=0.7)\n    nn <- length(lim.cernes)\n    num.cernes<-1:nn\n    text(lim.cernes-(c(lim.cernes,NA)-c(0,lim.cernes))/2,0.9*max(x$profil),as.character(num.cernes),cex=0.8)\n    #readline()\n    mm <- length(lim.bibf1)\n    profil <- x$profil\n    #boucle \"cerne par cerne dans l'arbre\"\n    toutes.lim.cernes<-c(1,lim.cernes)\n    for (j in num.cernes)\n    {\n      lim1 <- toutes.lim.cernes[j]\n      lim2 <- toutes.lim.cernes[j + 1]\n      l.bibf1 <- lim.bibf1[j]\n      Lo <- round((length(profil[lim1:lim2])) * pas, 4) #largeur de cerne en mm\n      Li <- round((length(profil[lim1:l.bibf1])) * pas, 4) #largeur du bi en mm type Nancy\n      Lf <- round(Lo - Li, 4) #largeur du bf en mm\n      Do <- round(mean((profil[lim1:lim2]), na.rm = T), 3) #densite moyenne de cerne\n      Di <- round(mean((profil[lim1:l.bibf1]), na.rm = T), 3) #densite moyenne bi type Nancy\n      Df <- round(mean((profil[l.bibf1:lim2]), na.rm = T), 3) #densite moyenne bf\n      Mi <- round(min((profil[lim1:lim2]), na.rm = T), 3) #densite min cerne\n      Ma <- round(max((profil[lim1:lim2]), na.rm = T), 3) #densite max cerne\n      profil.sans.NA <- profil[lim1:lim2][!is.na(profil[lim1:lim2])]\n      Eo <- round(sqrt(var(profil.sans.NA)), 3) #?cart type de densit? intra-cerne\n      Ei <- round(sqrt(var(profil[lim1:l.bibf1])), 3) #?cart type de densit? intra-bi\n      Ef <- round(sqrt(var(profil[l.bibf1:lim2])), 3) #?cart type de densit? intra-bf\n      Co <- Ma - Mi # contraste de densit? intra-cerne\n      annee <- x$millesimes[j] #annee du cerne\n      #prov<-pac[i,\"prov\"]\n      vec <- c( substring(liste.profils[i],6,11 ), rayon , annee, j, Lo, Li, Lf, Do, Di, Df, Mi, Ma, Eo, Ei, Ef, Co) #cas particulier ?\n      #ADAPTER le substring !\n      matrix.resultats <- rbind(matrix.resultats, vec)\n      dimnames(matrix.resultats) <- list(NULL, c(\"code\",\"rayon\", \"ye\",\"ce\", \"Lo\", \"Li\", \"Lf\", \"Do\", \"Di\", \"Df\", \"Mi\", \"Ma\", \"Eo\", \"Ei\", \"Ef\", \"Co\"))\n      #sauvegarde\n      assign(\"matmdm_B\", matrix.resultats, pos = 1, immediate = T)\n    }\n  }\n}\n\n",
+    "created" : 1496238209739.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2207918553",
+    "id" : "6D82FB0F",
+    "lastKnownWriteTime" : 1496241557,
+    "last_content_update" : 1496241557493,
+    "path" : "D:/thchauvin/Doc-INRA/Stats R/Packages/MicrodensiteR/R/calcul.mat_branche.r",
+    "project_path" : "R/calcul.mat_branche.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
