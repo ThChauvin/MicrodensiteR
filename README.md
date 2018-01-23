@@ -3,6 +3,8 @@ Package for microdensity studies
 
 ## Installation
 
-put this line in your console :
+to install the development version:
 
+````
 devtools::install_github("ThChauvin/MicrodensiteR")
+```
