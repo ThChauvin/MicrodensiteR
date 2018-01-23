@@ -17,4 +17,4 @@ Import.tot("pxb",pathway="D:/Mdm/Profiles")     # to import all profile.
 affiche("pxb")    # to display profiles in the plot window.
 ajustepositionlimite("pxb", intliss1 = 1/100, intliss2 = 1/80)     # small correction of ring limits.
 k.bibf.tot("pxb")    # positioning of the EW/LW limits.
-calcul.mat("pxb", 0.025, subst1 = 1 ,subst2 = 3)    # Calculation microdensity variables.
+calcul.mat("x...", 0.025, subst1 = 1 ,subst2 = 3)    # Calculation microdensity variables.
