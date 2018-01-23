@@ -13,7 +13,8 @@ devtools::install_github("ThChauvin/MicrodensiteR")
 ## Example
 
 ```
-Import.tot("pxb",pathway="D:/Mdm/Profiles") # to import all profile with "pxb" in their name in the directory "D:/Mdm/Profiles".
-ajustepositionlimite("pxb", intliss1 = 1/100, intliss2 = 1/80) # small correction of ring limits using smoothing functions (supsmu).  
-k.bibf.tot("pxb") # positioning of the EW/LW limits. EW/LW limits is determined using the mean of the extremes.
-calcul.mat("pxb", 0.025, subst1 = 1 ,subst2 = 3) # Calculation microdensity variables (mean ring density, earlywood density, latewood density, ring width,...) 
+Import.tot("pxb",pathway="D:/Mdm/Profiles")     # to import all profile.
+affiche("pxb")    # to display profiles in the plot window.
+ajustepositionlimite("pxb", intliss1 = 1/100, intliss2 = 1/80)     # small correction of ring limits.
+k.bibf.tot("pxb")    # positioning of the EW/LW limits.
+calcul.mat("pxb", 0.025, subst1 = 1 ,subst2 = 3)    # Calculation microdensity variables.
