@@ -2,7 +2,7 @@
 #'
 #' @return
 #' @export
-#' @details position the limite between earlywood and latewood. Create a new object adding a "x" at the beginning of the original name
+#' @details position the limite between earlywood and latewood. Create a new object adding a "xlim" at the beginning of the original name
 #' @param tt the pattern you want to recognize in the name of the files you want to to work on.
 #' @examples
 k.bibf.tot<-function(tt = "dat")
@@ -109,7 +109,7 @@ k.bibf.tot<-function(tt = "dat")
     names(sortie)<-c("profil","lim.cernes","lim.bibf","millesimes")#
     cat("Suivant?")
     #readline()
-    assign(paste("x",profil,sep=""),sortie,pos=1,immediate=T) #changer
+    assign(paste("xlim",profil,sep=""),sortie,pos=1,immediate=T) #changer
 
     cat("\nFIN:\n")
 

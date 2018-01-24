@@ -2,7 +2,7 @@
 #'
 #' @return
 #' @export
-#' @details position the limite between earlywood, transition-wood and latewood. Create a new object adding a "t" at the beginning of the original name.
+#' @details position the limite between earlywood, transition-wood and latewood. Create a new object adding a "tlim" at the beginning of the original name.
 #' @param tt the pattern you want to recognize in the name of the files you want to work on.
 #' @examples
 k.bibtbf.tot<-function(tt = "dat")
@@ -149,7 +149,7 @@ k.bibtbf.tot<-function(tt = "dat")
     names(sortie)<-c("profil","lim.cernes","lim.bibtbf","millesimes")#
     cat("Suivant?")
     # readline()
-    assign(paste("t",profil,sep=""),sortie,pos=1,immediate=T) #changer
+    assign(paste("tlim",profil,sep=""),sortie,pos=1,immediate=T) #changer
 
     cat("\nFIN:\n")
 
